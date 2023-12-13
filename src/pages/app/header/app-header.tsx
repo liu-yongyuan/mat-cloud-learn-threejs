@@ -23,6 +23,7 @@ import {
   menuKeySystemLocaleEnUS,
 } from '@/utils/global-const';
 import { Link } from 'react-router-dom';
+import { getPrefix } from '@/utils/global-tools';
 
 export interface AppHeaderProps {
   mode: 'horizontal' | 'vertical' | 'inline';
@@ -40,6 +41,11 @@ const useAppHeader = (props: AppHeaderProps, matConfigContext: MatConfig) => {
       label: <Link to={'/'}>Three</Link>,
       key: menuKeyHome,
       icon: React.createElement(HomeTwoTone),
+    },
+    {
+      label: <Link to={'x'}>Find X</Link>,
+      key: getPrefix(prefixRoute, 'x'),
+      icon: React.createElement(MailOutlined),
     },
     {
       label: '应用工具',

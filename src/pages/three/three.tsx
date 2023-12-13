@@ -22,15 +22,23 @@ const ThreeExample: React.FC = () => {
     scene.add(cube);
     camera.position.z = 5;
 
+    let frameId: number | null = null;
     function animate() {
-      requestAnimationFrame(animate);
+      frameId = requestAnimationFrame(animate);
 
       cube.rotation.x += 0.01;
       cube.rotation.y += 0.01;
       render.render(scene, camera);
     }
     animate();
-  });
+
+    return () => {
+      if (frameId) {
+        console.log('Three', frameId);
+        window.cancelAnimationFrame(frameId);
+      }
+    };
+  }, []);
   return (
     <div className="mat-three-container">
       <div ref={threeRenderRef} className="mat-three-render"></div>

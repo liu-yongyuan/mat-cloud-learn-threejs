@@ -1,5 +1,6 @@
 import App from '@/pages/app/app';
 import ThreeExample from '@/pages/three/three';
+import XComponent from '@/pages/x/x';
 import { createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter(
@@ -12,6 +13,10 @@ const router = createBrowserRouter(
           index: true,
           Component: ThreeExample,
         },
+        {
+          path: 'x',
+          Component: XComponent
+        }
       ],
     },
   ],
