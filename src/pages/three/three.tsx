@@ -13,6 +13,7 @@ const ThreeExample: React.FC = () => {
     const camera = new three.PerspectiveCamera(75, renderDOM.clientWidth / renderDOM.clientHeight, 0.1, 1000);
     const render = new three.WebGLRenderer();
     render.setSize(renderDOM.clientWidth, renderDOM.clientHeight);
+    renderDOM.innerHTML = '';
     renderDOM.appendChild(render.domElement);
 
     const geometry = new three.BoxGeometry(1, 1, 1);

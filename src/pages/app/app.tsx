@@ -49,7 +49,6 @@ const App: React.FC = () => {
         <Layout className="mat-page-container mat-page-layout">
           <AppHeader mode="horizontal" />
           <Content className="mat-page-layout-content">
-            <AppBreadCrumb />
             <Outlet />
           </Content>
           <AppFooter />
