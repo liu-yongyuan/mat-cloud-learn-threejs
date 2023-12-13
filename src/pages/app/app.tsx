@@ -5,7 +5,6 @@ import { Locale } from 'antd/es/locale';
 import 'dayjs/locale/zh-cn';
 import './app.less';
 import AppHeader from './header/app-header';
-import ComponentInterface from '@/utils/component-interface';
 import { log } from '@/utils/log';
 import MatConfigContext, { MatConfig } from './context';
 
@@ -13,15 +12,9 @@ import { storeLightDefault, storeLocaleDefault } from '@/utils/global-store';
 import AppBreadCrumb from './breadcrumb/app-breadcrumb';
 
 import { Outlet } from 'react-router-dom';
+import { application } from '@/utils/global-const';
 
 const { Content, Footer } = Layout;
-
-export const AppComponent: ComponentInterface = {
-  cname: {
-    name: 'app',
-    prefix: 'mat',
-  },
-};
 
 const useApp = () => {
   const [locale, setLocale] = useState<Locale>(storeLocaleDefault());
@@ -33,38 +26,32 @@ const useApp = () => {
       light,
       setLight,
     }),
-    [locale, setLocale, light, setLight],
+    [locale, setLocale, light, setLight]
   );
   return { memoMatConfigContext };
 };
 
 const App: React.FC = () => {
-  log(AppComponent.cname, 'render');
+  log(application, 'render');
 
   const { memoMatConfigContext } = useApp();
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
+  const algorithm = memoMatConfigContext.light ? theme.defaultAlgorithm : theme.darkAlgorithm;
 
   return (
     <MatConfigContext.Provider value={memoMatConfigContext}>
       <ConfigProvider
         locale={memoMatConfigContext.locale}
         theme={{
-          algorithm: memoMatConfigContext.light ? theme.defaultAlgorithm : theme.darkAlgorithm,
+          algorithm,
         }}
       >
-        <Layout>
+        <Layout className="mat-page-container mat-page-layout">
           <AppHeader mode="horizontal" />
-          <Content style={{ padding: '0 50px' }}>
+          <Content className="mat-page-layout-content">
             <AppBreadCrumb />
-            <Layout style={{ padding: '24px 0', background: colorBgContainer }}>
-              <Content style={{ padding: '0 24px', minHeight: 280 }}>
-                <Outlet />
-              </Content>
-            </Layout>
+            <Outlet />
           </Content>
-          <Footer style={{ textAlign: 'center' }}>Mat Antd Example ©2023 Created by liu-yongyuan</Footer>
+          <Footer className="mat-page-layout-footer">Mat Antd Example ©2023 Created by liu-yongyuan</Footer>
         </Layout>
       </ConfigProvider>
     </MatConfigContext.Provider>

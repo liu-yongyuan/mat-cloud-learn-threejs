@@ -1,19 +1,11 @@
 import { Locale } from 'antd/es/locale';
-import { prefixLocale, prefixLight, boolTrueNumber } from './global-const';
+import { prefixLocale, prefixLight, boolTrueNumber, matUtilsGlobalStore } from './global-const';
 import zhCN from 'antd/locale/zh_CN';
 import enUS from 'antd/locale/en_US';
 import { log } from './log';
-import { ComponentName } from './component-interface';
-
-export const globalStoreCName: ComponentName = {
-  // 填充组件名称即可
-  name: 'globalStore',
-  // 无特殊需求不改
-  prefix: 'mat-utils',
-};
 
 export const storeLocale = (locale: Locale, setLocale: Function) => {
-  log(globalStoreCName, locale.locale);
+  log(matUtilsGlobalStore, locale.locale);
   localStorage.setItem(prefixLocale, locale.locale);
   setLocale(locale);
 };
@@ -30,7 +22,7 @@ export const getSotreLocale = () => {
 };
 
 export const storeLight = (light: number, setLight: Function) => {
-  log(globalStoreCName, light);
+  log(matUtilsGlobalStore, light);
   localStorage.setItem(prefixLight, `${light}`);
   setLight(light);
 };

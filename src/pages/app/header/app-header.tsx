@@ -1,4 +1,3 @@
-import ComponentInterface from '@/utils/component-interface';
 import { log } from '@/utils/log';
 import { Avatar, Menu, MenuProps, Flex, theme } from 'antd';
 import { MailOutlined, AppstoreOutlined, SettingOutlined, CheckCircleTwoTone, HomeTwoTone } from '@ant-design/icons';
@@ -29,13 +28,6 @@ export interface AppHeaderProps {
   mode: 'horizontal' | 'vertical' | 'inline';
 }
 
-export const appHeader: ComponentInterface = {
-  cname: {
-    name: 'app-header',
-    prefix: 'mat',
-  },
-};
-
 const styleAvatar: React.CSSProperties = {
   backgroundColor: '#1677ff',
 };
@@ -46,8 +38,8 @@ const useAppHeader = (props: AppHeaderProps, matConfigContext: MatConfig) => {
   const items: MenuProps['items'] = [
     {
       label: (
-        <Link title="首页" to={'/'}>
-          首页
+        <Link title="时间" to={'/'}>
+          日期
         </Link>
       ),
       key: menuKeyHome,
@@ -55,8 +47,8 @@ const useAppHeader = (props: AppHeaderProps, matConfigContext: MatConfig) => {
     },
     {
       label: (
-        <Link title="账号管理" to={'mail'}>
-          账号管理
+        <Link title="Three" to={'three'}>
+          Three Demo
         </Link>
       ),
       key: menuKeyAdmin,
@@ -147,7 +139,6 @@ const useAppHeader = (props: AppHeaderProps, matConfigContext: MatConfig) => {
 
   const handleMenuClick: MenuProps['onClick'] = (e) => {
     const key = e.key;
-    log(appHeader.cname, 'menu-click', key);
     handleMenuClickByLink(key);
     handleMenuClickTheme(key);
     handleMenuClickLocale(key);
