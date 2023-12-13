@@ -1,5 +1,5 @@
 import App from '@/pages/app/app';
-import Three from '@/pages/three/three';
+import ThreeExample from '@/pages/three/three';
 import { createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter(
@@ -10,7 +10,7 @@ const router = createBrowserRouter(
       children: [
         {
           index: true,
-          Component: Three,
+          Component: ThreeExample,
         },
       ],
     },
