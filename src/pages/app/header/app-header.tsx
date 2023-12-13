@@ -37,22 +37,9 @@ const useAppHeader = (props: AppHeaderProps, matConfigContext: MatConfig) => {
 
   const items: MenuProps['items'] = [
     {
-      label: (
-        <Link title="时间" to={'/'}>
-          日期
-        </Link>
-      ),
+      label: <Link to={'/'}>Three</Link>,
       key: menuKeyHome,
       icon: React.createElement(HomeTwoTone),
-    },
-    {
-      label: (
-        <Link title="Three" to={'three'}>
-          Three Demo
-        </Link>
-      ),
-      key: menuKeyAdmin,
-      icon: React.createElement(MailOutlined),
     },
     {
       label: '应用工具',

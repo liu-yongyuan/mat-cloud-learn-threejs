@@ -13,8 +13,9 @@ import AppBreadCrumb from './breadcrumb/app-breadcrumb';
 
 import { Outlet } from 'react-router-dom';
 import { application } from '@/utils/global-const';
+import AppFooter from './footer/app-footer';
 
-const { Content, Footer } = Layout;
+const { Content } = Layout;
 
 const useApp = () => {
   const [locale, setLocale] = useState<Locale>(storeLocaleDefault());
@@ -36,7 +37,7 @@ const App: React.FC = () => {
 
   const { memoMatConfigContext } = useApp();
   const algorithm = memoMatConfigContext.light ? theme.defaultAlgorithm : theme.darkAlgorithm;
-
+  
   return (
     <MatConfigContext.Provider value={memoMatConfigContext}>
       <ConfigProvider
@@ -51,7 +52,7 @@ const App: React.FC = () => {
             <AppBreadCrumb />
             <Outlet />
           </Content>
-          <Footer className="mat-page-layout-footer">Mat Antd Example ©2023 Created by liu-yongyuan</Footer>
+          <AppFooter />
         </Layout>
       </ConfigProvider>
     </MatConfigContext.Provider>
