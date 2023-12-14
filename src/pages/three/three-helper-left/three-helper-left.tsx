@@ -4,12 +4,16 @@ import { Button, Menu, MenuProps, theme } from 'antd';
 import ThreeManContext from '../three-context';
 import menuGetItem from '@/utils/menu-get-item';
 
+const geometryArray: number[] = [];
 const addGeometry = (scene: three.Scene, camera: three.Camera) => {
   const geometry = new three.BoxGeometry(1, 1, 1);
   const material = new three.MeshBasicMaterial({ color: 0x00ff00 });
   const cube = new three.Mesh(geometry, material);
+  let length = geometryArray.length;
+  cube.position.set(-5 + length, 1, 1);
   scene.add(cube);
   camera.position.z = 5;
+  geometryArray.push(cube.id);
 };
 
 const ThreeHelperLeft: React.FC = () => {
@@ -23,11 +27,19 @@ const ThreeHelperLeft: React.FC = () => {
     // 创建几何体
     addGeometry(threeManContext.control.scene!, threeManContext.control.camera!);
   };
-  const handleRemoveGreenCube = () => {};
-
-  const handleeRotationGreenCube = () => {
-    
+  const handleRemoveGreenCube = () => {
+    if (geometryArray.length === 0) {
+      return;
+    }
+    let object = threeManContext.control.scene?.getObjectById(geometryArray.pop()!);
+    if (!object) {
+      console.error('id 找不到');
+      return;
+    }
+    threeManContext.control.scene?.remove(object);
   };
+
+  const handleeRotationGreenCube = () => {};
 
   const items: MenuProps['items'] = [
     menuGetItem('几何体', '几何体', null, [
